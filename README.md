@@ -5,3 +5,6 @@ Will probably have:
 * some sort of programming language / bf interpreter
 * display capabilites
 * idk
+
+
+I will probs use S-CODE to BF
