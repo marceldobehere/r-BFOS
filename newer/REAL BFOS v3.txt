@@ -1,0 +1,396 @@
+phrase Loading
+nl
+# Loads all Variables / Lists
+int BF_P
+int BF_MP
+int AAA
+int C_1
+int C_2
+int C_3
+int C_4
+int C_5
+int C_6
+int C_7
+int C_8
+int C_9
+int C_S
+int C_E
+int C_C
+int LOAD
+int RUN
+
+
+# Sets all the cells and files I guess
+intl BF_mem 100
+intl BF_code 900
+intl File_begin 20
+intl File_end 20
+intl File_data 10000
+
+
+
+
+
+# IMPORT YOUR PROGRAMCODES HERE:
+# cat
+lset File_begin 1 1
+lset File_data 1 1
+lset File_data 2 7
+lset File_data 3 6
+lset File_data 4 5
+lset File_data 5 8
+lset File_end 1 6
+
+# hello
+lset File_begin 2 8
+lset File_data 8 1
+lset File_data 9 1
+lset File_data 10 1
+lset File_data 11 1
+lset File_data 12 1
+lset File_data 13 1
+lset File_data 14 1
+lset File_data 15 1
+lset File_data 16 1
+lset File_data 17 1
+lset File_data 18 7
+lset File_data 19 3
+lset File_data 20 1
+lset File_data 21 1
+lset File_data 22 1
+lset File_data 23 1
+lset File_data 24 1
+lset File_data 25 1
+lset File_data 26 1
+lset File_data 27 3
+lset File_data 28 1
+lset File_data 29 1
+lset File_data 30 1
+lset File_data 31 1
+lset File_data 32 1
+lset File_data 33 1
+lset File_data 34 1
+lset File_data 35 1
+lset File_data 36 1
+lset File_data 37 1
+lset File_data 38 3
+lset File_data 39 1
+lset File_data 40 1
+lset File_data 41 1
+lset File_data 42 3
+lset File_data 43 1
+lset File_data 44 4
+lset File_data 45 4
+lset File_data 46 4
+lset File_data 47 4
+lset File_data 48 2
+lset File_data 49 8
+lset File_data 50 3
+lset File_data 51 1
+lset File_data 52 1
+lset File_data 53 5
+lset File_data 54 3
+lset File_data 55 1
+lset File_data 56 5
+lset File_data 57 1
+lset File_data 58 1
+lset File_data 59 1
+lset File_data 60 1
+lset File_data 61 1
+lset File_data 62 1
+lset File_data 63 1
+lset File_data 64 5
+lset File_data 65 5
+lset File_data 66 1
+lset File_data 67 1
+lset File_data 68 1
+lset File_data 69 5
+lset File_data 70 3
+lset File_data 71 1
+lset File_data 72 1
+lset File_data 73 5
+lset File_data 74 4
+lset File_data 75 4
+lset File_data 76 1
+lset File_data 77 1
+lset File_data 78 1
+lset File_data 79 1
+lset File_data 80 1
+lset File_data 81 1
+lset File_data 82 1
+lset File_data 83 1
+lset File_data 84 1
+lset File_data 85 1
+lset File_data 86 1
+lset File_data 87 1
+lset File_data 88 1
+lset File_data 89 1
+lset File_data 90 1
+lset File_data 91 5
+lset File_data 92 3
+lset File_data 93 5
+lset File_data 94 1
+lset File_data 95 1
+lset File_data 96 1
+lset File_data 97 5
+lset File_data 98 2
+lset File_data 99 2
+lset File_data 100 2
+lset File_data 101 2
+lset File_data 102 2
+lset File_data 103 2
+lset File_data 104 5
+lset File_data 105 2
+lset File_data 106 2
+lset File_data 107 2
+lset File_data 108 2
+lset File_data 109 2
+lset File_data 110 2
+lset File_data 111 2
+lset File_data 112 2
+lset File_data 113 5
+lset File_data 114 3
+lset File_data 115 1
+lset File_data 116 5
+lset File_data 117 3
+lset File_data 118 5
+lset File_data 119 1
+lset File_data 120 1
+lset File_data 121 1
+lset File_data 122 5
+lset File_end 2 123
+
+
+
+
+
+
+
+
+
+function LOAD
+phrase Loading program 
+outvardec LOAD
+nl
+lsetvvar File_begin LOAD C_S
+lsetvvar File_end LOAD C_E
+set C_1 1
+set C_C 1
+loop C_S < C_E
+
+lsetvvar File_data C_S C_2
+vvlset BF_code C_C C_2
+
+math C_S + C_1
+math C_C + C_1
+if C_S < C_E loop
+phrase Done.
+nl
+endfunc
+
+function RUN
+phrase Wiping BF CELL RAM...
+nl
+set C_1 1
+set C_3 1
+set C_4 0
+set C_2 101
+loop C_1 < C_2
+vvlset BF_mem C_1 C_4
+output #
+math C_1 + C_3
+if C_1 < C_2 loop
+
+phrase Done.
+nl
+
+
+
+function import_prg
+phrase importing programs isn't implemented yet.
+nl
+endfunc
+
+
+
+
+
+phrase Running program...
+nl
+set BF_MP 1
+set C_1 0
+set C_2 1
+set C_4 1
+lsetvvar BF_code C_2 C_3
+loop C_3 ≠ C_1
+lsetvvar BF_code C_2 C_3
+
+
+# output #
+# code for an interpreter goes here
+# 1 + 2 - 3 > 4 < 5 . 6 , 7 [ 8 ]
+
+
+# ---------------------------------------------
+# +
+set C_5 1
+do if C_3 = C_5
+lsetvvar BF_mem BF_MP C_6
+math C_6 + C_4
+vvlset BF_mem BF_MP C_6
+stopdo
+# -
+set C_5 2
+do if C_3 = C_5
+lsetvvar BF_mem BF_MP C_6
+math C_6 - C_4
+vvlset BF_mem BF_MP C_6
+stopdo
+# ---------------------------------------------
+# >
+set C_5 3
+do if C_3 = C_5
+math BF_MP + C_4
+stopdo
+# <
+set C_5 4
+do if C_3 = C_5
+math BF_MP - C_4
+stopdo
+# ---------------------------------------------
+# .
+set C_5 5
+do if C_3 = C_5
+lsetvvar BF_mem BF_MP C_6
+outvar C_6
+stopdo
+# ,
+set C_5 6
+do if C_3 = C_5
+input C_6
+vvlset BF_mem BF_MP C_6
+stopdo
+# ---------------------------------------------
+# [
+set C_5 7
+do if C_3 = C_5
+lsetvvar BF_mem BF_MP C_6
+set C_7 1
+loop C_6 = C_1
+math C_2 + C_4
+lsetvvar BF_code C_2 C_3
+set C_5 7
+do if C_3 = C_5
+math C_7 + C_4
+stopdo
+set C_5 8
+do if C_3 = C_5
+math C_7 - C_4
+stopdo
+if C_7 ≠ C_1 loop
+stopdo
+
+# ]
+set C_5 8
+do if C_3 = C_5
+lsetvvar BF_mem BF_MP C_6
+set C_7 1
+loop C_6 ≠ C_1
+math C_2 - C_4
+lsetvvar BF_code C_2 C_3
+set C_5 7
+do if C_3 = C_5
+math C_7 - C_4
+stopdo
+set C_5 8
+do if C_3 = C_5
+math C_7 + C_4
+stopdo
+if C_7 ≠ C_1 loop
+stopdo
+
+
+# ---------------------------------------------
+
+
+
+
+math C_2 + C_4
+if C_3 ≠ C_1 loop
+
+
+
+
+nl
+phrase Done.
+nl
+endfunc
+
+
+
+
+phrase Starting...
+nl
+
+set LOAD 1
+set AAA 1
+
+set C_1 0
+loop AAA ≠ C_4
+
+
+
+set C_1 0
+do if LOAD ≠ C_1
+func LOAD
+func RUN
+stopdo
+
+phrase Enter program(1) command(2) exit(0): 
+input AAA
+set C_5 48
+math AAA - C_5
+outvardec AAA
+nl
+
+
+set C_5 1
+do if AAA = C_5
+phrase Enter program Number: 
+set C_2 0
+
+input LOAD
+outvar LOAD
+set C_5 48
+math LOAD - C_5
+set C_5 10
+math LOAD * C_5
+
+input C_2
+outvar C_2
+set C_5 48
+math C_2 - C_5
+math LOAD + C_2
+
+nl
+stopdo
+
+
+set C_5 2
+do if AAA = C_5
+func import_prg
+stopdo
+
+
+set C_1 0
+if AAA ≠ C_1 loop
+
+
+
+
+
+
+
+
+
+
