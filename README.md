@@ -8,3 +8,6 @@ Will probably have:
 
 
 I will probs use S-CODE to BF
+
+you should run the codes here
+https://turbowarp.org/419944311/fullscreen
