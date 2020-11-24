@@ -1,0 +1,432 @@
+phrase Loading
+nl
+# Loads all Variables / Lists
+int BF_P
+int BF_MP
+int AAA
+int C_1
+int C_2
+int C_3
+int C_4
+int C_5
+int C_6
+int C_7
+int C_8
+int C_9
+int C_S
+int C_E
+int C_C
+int LOAD
+int RUN
+int LASTPRG
+int LASTPRGID
+
+
+# Sets all the cells and files I guess
+intl BF_mem 200
+intl BF_code 800
+intl File_begin 20
+intl File_end 20
+intl File_data 20000
+
+# This program uses about 42100 cells if maxed out
+# but normaly it just uses around 4000 cells if you want to make sure.
+
+
+
+# IMPORT YOUR PROGRAMCODES HERE:
+
+
+
+# A
+lset File_begin 1 1
+lset File_data 1 3
+lset File_data 2 2
+lset File_data 3 3
+lset File_data 4 3
+lset File_data 5 7
+lset File_data 6 2
+lset File_data 7 8
+lset File_data 8 1
+lset File_data 9 1
+lset File_data 10 1
+lset File_data 11 1
+lset File_data 12 1
+lset File_data 13 1
+lset File_data 14 1
+lset File_data 15 1
+lset File_data 16 1
+lset File_data 17 1
+lset File_data 18 1
+lset File_data 19 1
+lset File_data 20 1
+lset File_data 21 1
+lset File_data 22 1
+lset File_data 23 1
+lset File_data 24 1
+lset File_data 25 1
+lset File_data 26 1
+lset File_data 27 1
+lset File_data 28 1
+lset File_data 29 1
+lset File_data 30 1
+lset File_data 31 1
+lset File_data 32 1
+lset File_data 33 1
+lset File_data 34 1
+lset File_data 35 1
+lset File_data 36 1
+lset File_data 37 1
+lset File_data 38 1
+lset File_data 39 1
+lset File_data 40 1
+lset File_data 41 1
+lset File_data 42 1
+lset File_data 43 5
+lset File_end 1 44
+set LASTPRG 45
+set LASTPRGID 2
+
+
+
+
+
+
+# FUNCTIONS
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+function import_prg
+phrase Please enter your BF code
+nl
+phrase stop with a space
+nl
+# space 32 + 43 - 45 < 60 > 62 [ 91 ] 93 . 46 , 44
+# 1 + 2 - 3 > 4 < 5 . 6 , 7 [ 8 ]
+set C_4 1
+
+copy LASTPRG C_2
+copy LASTPRGID C_3
+
+vvlset File_begin LASTPRGID LASTPRG
+
+
+loop C_4 = C_4
+input C_6
+outvar C_6
+
+# +
+set C_4 43
+do if C_6 = C_4
+set C_6 1
+vvlset File_data C_2 C_6
+stopdo
+
+# -
+set C_4 45
+do if C_6 = C_4
+set C_6 2
+vvlset File_data C_2 C_6
+stopdo
+
+
+
+# <
+set C_4 60
+do if C_6 = C_4
+set C_6 4
+vvlset File_data C_2 C_6
+stopdo
+
+# >
+set C_4 62
+do if C_6 = C_4
+set C_6 3
+vvlset File_data C_2 C_6
+stopdo
+
+# [
+set C_4 91
+do if C_6 = C_4
+set C_6 7
+vvlset File_data C_2 C_6
+stopdo
+
+# ]
+set C_4 93
+do if C_6 = C_4
+set C_6 8
+vvlset File_data C_2 C_6
+stopdo
+
+# .
+set C_4 46
+do if C_6 = C_4
+set C_6 5
+vvlset File_data C_2 C_6
+stopdo
+
+# ,
+set C_4 44
+do if C_6 = C_4
+set C_6 6
+vvlset File_data C_2 C_6
+nl
+stopdo
+
+
+set C_4 1
+math C_2 + C_4
+
+set C_4 32 
+if C_6 ≠ C_4 loop
+
+nl
+phrase Saved as Program  
+outvardec LASTPRGID
+
+set C_4 1
+math C_2 + C_4
+vvlset File_end LASTPRGID C_2
+math C_2 + C_4
+copy C_2 LASTPRG
+math LASTPRGID + C_4
+set LOAD 0
+nl
+endfunc
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+function LOAD
+phrase Loading program 
+outvardec LOAD
+nl
+lsetvvar File_begin LOAD C_S
+lsetvvar File_end LOAD C_E
+set C_1 1
+set C_C 1
+loop C_S < C_E
+
+lsetvvar File_data C_S C_2
+vvlset BF_code C_C C_2
+output #
+math C_S + C_1
+math C_C + C_1
+if C_S < C_E loop
+
+nl
+endfunc
+
+
+
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+function RUN
+phrase Wiping BF CELL RAM...
+nl
+set C_1 1
+set C_3 1
+set C_4 0
+set C_2 161
+loop C_1 < C_2
+vvlset BF_mem C_1 C_4
+output #
+math C_1 + C_3
+if C_1 < C_2 loop
+
+phrase Done.
+
+phrase Running program...
+nl
+set BF_MP 1
+set C_1 0
+set C_2 1
+set C_4 1
+lsetvvar BF_code C_2 C_3
+loop C_3 ≠ C_1
+lsetvvar BF_code C_2 C_3
+
+
+# output #
+# code for an interpreter goes here
+# 1 + 2 - 3 > 4 < 5 . 6 , 7 [ 8 ]
+
+
+# ---------------------------------------------
+# +
+set C_5 1
+do if C_3 = C_5
+lsetvvar BF_mem BF_MP C_6
+math C_6 + C_4
+vvlset BF_mem BF_MP C_6
+stopdo
+# -
+set C_5 2
+do if C_3 = C_5
+lsetvvar BF_mem BF_MP C_6
+math C_6 - C_4
+vvlset BF_mem BF_MP C_6
+stopdo
+# ---------------------------------------------
+# >
+set C_5 3
+do if C_3 = C_5
+math BF_MP + C_4
+stopdo
+# <
+set C_5 4
+do if C_3 = C_5
+math BF_MP - C_4
+stopdo
+# ---------------------------------------------
+# .
+set C_5 5
+do if C_3 = C_5
+lsetvvar BF_mem BF_MP C_6
+outvar C_6
+stopdo
+# ,
+set C_5 6
+do if C_3 = C_5
+input C_6
+vvlset BF_mem BF_MP C_6
+stopdo
+# ---------------------------------------------
+# [
+set C_5 7
+do if C_3 = C_5
+lsetvvar BF_mem BF_MP C_6
+set C_7 1
+loop C_6 = C_1
+math C_2 + C_4
+lsetvvar BF_code C_2 C_3
+set C_5 7
+do if C_3 = C_5
+math C_7 + C_4
+stopdo
+set C_5 8
+do if C_3 = C_5
+math C_7 - C_4
+stopdo
+if C_7 ≠ C_1 loop
+stopdo
+
+# ]
+set C_5 8
+do if C_3 = C_5
+lsetvvar BF_mem BF_MP C_6
+set C_7 1
+loop C_6 ≠ C_1
+math C_2 - C_4
+lsetvvar BF_code C_2 C_3
+set C_5 7
+do if C_3 = C_5
+math C_7 - C_4
+stopdo
+set C_5 8
+do if C_3 = C_5
+math C_7 + C_4
+stopdo
+if C_7 ≠ C_1 loop
+stopdo
+
+
+# ---------------------------------------------
+
+
+
+
+math C_2 + C_4
+if C_3 ≠ C_1 loop
+
+
+
+nl
+phrase Done.
+nl
+endfunc
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+# STARTING
+
+
+
+phrase Starting...
+nl
+
+set LOAD 0
+set AAA 1
+
+set C_1 0
+loop AAA ≠ C_4
+
+
+
+set C_1 0
+do if LOAD ≠ C_1
+func LOAD
+func RUN
+nl
+stopdo
+nl
+nl
+nl
+phrase Enter program(1) command(2) exit(0): 
+input AAA
+set C_5 48
+math AAA - C_5
+outvardec AAA
+nl
+
+
+set C_5 1
+do if AAA = C_5
+nl
+phrase Enter program Number: 
+set C_2 0
+
+input LOAD
+outvar LOAD
+set C_5 48
+math LOAD - C_5
+set C_5 10
+math LOAD * C_5
+
+input C_2
+outvar C_2
+set C_5 48
+math C_2 - C_5
+math LOAD + C_2
+
+nl
+stopdo
+
+
+set C_5 2
+do if AAA = C_5
+func import_prg
+stopdo
+
+
+set C_1 0
+if AAA ≠ C_1 loop
+
+
+
+
+
+
+
+
+
+
