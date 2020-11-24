@@ -10,4 +10,5 @@ Will probably have:
 I will probs use S-CODE to BF
 
 you should run the codes here
+(requires more than 8 bit cells (12-16 bit is ideal!)
 https://turbowarp.org/454094498
